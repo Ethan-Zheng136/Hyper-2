@@ -10,7 +10,7 @@ __C.DATASETS                                     = edict()
 __C.DATASETS.SHAPENET55                          = edict()
 __C.DATASETS.SHAPENET55.CATEGORY_FILE_PATH       = 'datasets/ShapeNet55'
 __C.DATASETS.SHAPENET55.N_POINTS                 = 2048
-__C.DATASETS.SHAPENET55.COMPLETE_POINTS_PATH     = './shapenet_pc/%s'
+__C.DATASETS.SHAPENET55.COMPLETE_POINTS_PATH     = '/home/guantian/SVDFormer_PointSea/data/ShapeNet55/shapenet_pc/%s'
 
 #
 # Dataset
@@ -28,7 +28,7 @@ __C.CONST.NUM_WORKERS                            = 4
 __C.CONST.N_INPUT_POINTS                         = 2048
 
 
-__C.CONST.mode = 'easy'
+__C.CONST.mode = 'hard'
 
 #suo
 # Directories
@@ -36,8 +36,8 @@ __C.CONST.mode = 'easy'
 
 __C.DIR                                          = edict()
 __C.DIR.OUT_PATH                                 = 'SVDFormer_55'
-__C.CONST.DEVICE                                 = '0,1'
-# __C.CONST.WEIGHTS                                = ''
+__C.CONST.DEVICE                                 = '0'
+__C.CONST.WEIGHTS                                = '/home/guantian/SVDFormer_PointSea/ckpt/ShapeNet55.pth'
 
 # Memcached
 #

@@ -7,6 +7,7 @@ from pointnet2_ops.pointnet2_utils import gather_operation as gather_points
 import time
 from models.model_utils import *
 from metrics.CD.chamfer3D.dist_chamfer_3D import chamfer_3DDist
+from utils.loss_utils import *
 
 class FeatureExtractor(nn.Module):
     def __init__(self, out_dim=256):
@@ -63,6 +64,15 @@ class SDG(nn.Module):
         self.embedding = SinusoidalPositionalEmbedding(hidden_dim)
         self.cd_distance = chamfer_3DDist()
 
+    def hyper_cd_distance(self, coarse, partial):
+        d1, _, _, _ = chamfer_dist(coarse, partial)
+        d1 = self.arcosh(1 + 1 * d1)
+        return d1
+
+    def arcosh(self, x, eps=1e-5):
+        x = torch.clamp(x, min=1 + eps)
+        return torch.log(x + torch.sqrt(1 + x) * torch.sqrt(x - 1))
+
 
     def forward(self, local_feat, coarse,f_g,partial):
         batch_size, _, N = coarse.size()
@@ -71,9 +81,23 @@ class SDG(nn.Module):
         F = torch.cat([F, f_g.repeat(1, 1, F.shape[-1])], dim=1)
 
         # Structure Analysis
-        half_cd = self.cd_distance(coarse.transpose(1, 2).contiguous(), partial.transpose(1, 2).contiguous())[
-                      0] / self.sigma
-        embd = self.embedding(half_cd).reshape(batch_size, self.hidden, -1).permute(2, 0, 1)
+
+        # half_cd = self.cd_distance(coarse.transpose(1, 2).contiguous(), partial.transpose(1, 2).contiguous())[
+        #               0] / self.sigma
+        # embd = self.embedding(half_cd).reshape(batch_size, self.hidden, -1).permute(2, 0, 1)
+        # print('coarse.shape:', coarse.shape)
+        # print('partial.shape:', partial.shape)
+        # print('half_cd.shape:', half_cd.shape)
+        # print('embd.shape:', embd.shape)
+        # breakpoint()
+        hyper_cd = self.hyper_cd_distance(coarse.transpose(1, 2).contiguous(), partial.transpose(1, 2).contiguous())
+        embd = self.embedding(hyper_cd).reshape(batch_size, self.hidden, -1).permute(2, 0, 1)
+        # print('coarse.shape:', coarse.shape)
+        # print('partial.shape:', partial.shape)
+        # print('half_cd.shape:', hyper_cd.shape)
+        # print('embd.shape:', embd.shape)
+        # breakpoint()
+
         F_Q = self.sa1(F,embd)
         F_Q_ = self.decoder1(F_Q)
 
@@ -147,6 +171,7 @@ class SVFNet(nn.Module):
 
     def forward(self, points,depth):
         batch_size,_,N = points.size()
+        # print('depth.shape:', depth.shape)
         f_v = self.img_feature_extractor(depth).view(batch_size,3,-1).transpose(1,2).contiguous()
         f_p = self.point_feature_extractor(points)
 
@@ -189,7 +214,9 @@ class Model(nn.Module):
         self.refine1 = SDG(ratio=cfg.NETWORK.step1,hidden_dim=768,dataset=cfg.DATASET.TEST_DATASET)
         self.refine2 = SDG(ratio=cfg.NETWORK.step2,hidden_dim=512,dataset=cfg.DATASET.TEST_DATASET)
 
-    def forward(self, partial,depth):
+    def forward(self, partial, depth):
+        # print('depth.shape:', depth.shape)
+        # breakpoint()
         partial = partial.transpose(1,2).contiguous()
         feat_g, coarse = self.encoder(partial,depth)
         local_feat = self.localencoder(partial)

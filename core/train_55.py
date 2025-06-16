@@ -114,7 +114,7 @@ def train_net(cfg):
                 partial_depth = torch.unsqueeze(render.get_img(partial),1)
                 pcds_pred = model(partial,partial_depth)
 
-                loss_total, losses = get_loss_PM(pcds_pred, partial, gt, sqrt=False)
+                loss_total, losses = get_loss_hyper(pcds_pred, partial, gt, sqrt=False)
 
                 optimizer.zero_grad()
                 loss_total.backward()

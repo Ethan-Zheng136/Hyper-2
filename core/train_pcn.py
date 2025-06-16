@@ -64,7 +64,7 @@ def train_net(cfg):
     lr_scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=cfg.TRAIN.WARMUP_STEPS,
                                           after_scheduler=scheduler_steplr)
 
-    init_epoch = 0
+    init_epoch = 170
     best_metrics = float('inf')
     steps = 0
     BestEpoch = 0
@@ -108,7 +108,7 @@ def train_net(cfg):
                 partial_depth = torch.unsqueeze(render.get_img(partial), 1)
                 pcds_pred = model(partial,partial_depth)
 
-                loss_total, losses = get_loss(pcds_pred,  gt, sqrt=True)
+                loss_total, losses = get_loss_hyper_pcn(pcds_pred, partial, gt, sqrt=True)
 
                 optimizer.zero_grad()
                 loss_total.backward()

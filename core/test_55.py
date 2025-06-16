@@ -72,6 +72,8 @@ def test_net(cfg, epoch_idx=-1, test_data_loader=None, test_writer=None, model=N
                     partial, _ = utils.helpers.seprate_point_cloud(gt, npoints, num_crop, fixed_points = item)
                     partial = fps_subsample(partial, 2048)
                     partial_depth = torch.unsqueeze(render.get_img(partial), 1)
+                    # print('partial_depth.shape:', partial_depth.shape)
+                    # breakpoint()
                     pcds_pred = model(partial.contiguous(),partial_depth)
                     cdl1,cdl2,f1 = calc_cd(pcds_pred[-1],gt,calc_f1=True)
                     dcd,_,_ = calc_dcd(pcds_pred[-1],gt)
