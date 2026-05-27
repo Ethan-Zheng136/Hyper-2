@@ -177,16 +177,6 @@ This codebase builds on **SVDFormer** (ICCV 2023) and the hyperbolic
 Chamfer formulation of **HyperbolicCD** (ICCV 2023). We thank the
 authors for releasing their code.
 
-## Citation
-
-```bibtex
-@inproceedings{hyper2_bmvc,
-  title     = {Hyper$^2$: Unleashing Hyperbolic Geometry's Full Potential via Dual-Space Consistency},
-  author    = {Zheng, Guantian and others},
-  booktitle = {Proceedings of the British Machine Vision Conference (BMVC)},
-  year      = {2026}
-}
-```
 
 ## License
 
