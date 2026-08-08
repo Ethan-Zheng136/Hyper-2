@@ -1,12 +1,29 @@
-# Hyper² : Unleashing Hyperbolic Geometry's Full Potential via Dual-Space Consistency
+<h1 align="center">
+  Hyper<sup>2</sup>: Unleashing Hyperbolic Geometry's Full Potential via Dual-Space Consistency
+</h1>
 
-<p><strong>BMVC 2026</strong></p>
+<p align="center">
+  <img src="https://img.shields.io/badge/BMVC-2026-4B6CB7?style=for-the-badge" alt="BMVC 2026">
+</p>
 
-**Guantian Zheng**<sup>1</sup> · **Haiyang Xu**<sup>1</sup> · **Tianyu Gao**<sup>1</sup>
+<p align="center">
+  <strong>Guantian Zheng</strong><sup>1</sup> &nbsp;·&nbsp;
+  <strong>Haiyang Xu</strong><sup>1</sup> &nbsp;·&nbsp;
+  <strong>Tianyu Gao</strong><sup>1</sup>
+</p>
 
-<sup>1</sup> Nanyang Technological University
+<p align="center">
+  <sup>1</sup>Nanyang Technological University
+</p>
 
-</div>
+<p align="center">
+  <a href="#framework"><strong>Framework</strong></a> &nbsp;|&nbsp;
+  <a href="#hyperembedding-refinement-module"><strong>Method</strong></a> &nbsp;|&nbsp;
+  <a href="#"><strong>Paper</strong></a> &nbsp;|&nbsp;
+  <a href="#"><strong>Code</strong></a>
+</p>
+
+<br>
 
 Official PyTorch implementation of **Hyper²**, a point-cloud-completion
 framework that places the same `arcosh(1 + α·d²)` non-linearity at
