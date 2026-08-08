@@ -8,20 +8,14 @@
 
 <p align="center">
   <strong>Guantian Zheng</strong><sup>1</sup> &nbsp;·&nbsp;
-  <strong>Haiyang Xu</strong><sup>1</sup> &nbsp;·&nbsp;
-  <strong>Tianyu Gao</strong><sup>1</sup>
+  <strong>Haiyang Xu</strong> &nbsp;·&nbsp;
+  <strong>Tianyu Gao</strong>
 </p>
 
 <p align="center">
   <sup>1</sup>Nanyang Technological University
 </p>
 
-<p align="center">
-  <a href="#framework"><strong>Framework</strong></a> &nbsp;|&nbsp;
-  <a href="#hyperembedding-refinement-module"><strong>Method</strong></a> &nbsp;|&nbsp;
-  <a href="#"><strong>Paper</strong></a> &nbsp;|&nbsp;
-  <a href="#"><strong>Code</strong></a>
-</p>
 
 <br>
 
