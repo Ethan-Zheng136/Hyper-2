@@ -1,5 +1,22 @@
 # Hyper² : Unleashing Hyperbolic Geometry's Full Potential via Dual-Space Consistency
 
+<p align="center">
+  <strong>British Machine Vision Conference 2026 (BMVC 2026)</strong>
+</p>
+<p align="center">
+  Guantian Zheng<sup>1</sup> &nbsp;&nbsp;
+  Haiyang Xu<sup>1</sup> &nbsp;&nbsp;
+  Tianyu Gao<sup>1</sup>
+</p>
+<p align="center">
+  Nanyang Technological University
+</p>
+<p align="center">
+  <a href="PDF_LINK">Paper</a> |
+  <a href="PROJECT_PAGE_LINK">Project Page</a> |
+  <a href="CODE_LINK">Code</a>
+</p>
+
 Official PyTorch implementation of **Hyper²**, a point-cloud-completion
 framework that places the same `arcosh(1 + α·d²)` non-linearity at
 **both** ends of the network — as a positional bias inside the
